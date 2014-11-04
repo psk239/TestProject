@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-- (IBAction)buttonPressed:(id)sender;
-
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *imagesArray;
 @end
 
