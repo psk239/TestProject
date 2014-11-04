@@ -11,5 +11,7 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *imagesArray;
+@property (nonatomic, strong) UIWebView *webView;
+
 @end
 

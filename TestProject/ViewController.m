@@ -32,9 +32,21 @@
     self.tableView.delegate = self;
     [self.tableView setFrame:self.view.bounds];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
+
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+
+    UIButton *dismissWebViewButton = [[UIButton alloc] initWithFrame:self.webView.bounds];
+    dismissWebViewButton.backgroundColor = [UIColor clearColor];
+    [dismissWebViewButton addTarget:self action:@selector(dismissWebButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.webView addSubview:dismissWebViewButton];
     
     [self.view addSubview:self.tableView];
+}
+
+#pragma - Actions
+
+- (void)dismissWebButtonPressed:(UIButton*)button {
+    [self.webView removeFromSuperview];
 }
 
 #pragma - UITableView Data Source Methods
@@ -63,6 +75,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"The row that was pressed was row %ld", ((long)indexPath.row + 1));
+    
+    NSURL *currentUrl = [self.imagesArray objectAtIndex:indexPath.row];
+
+    [self.webView loadRequest:[NSURLRequest requestWithURL:currentUrl]];
+    [self.view addSubview:self.webView];
 }
 
 
