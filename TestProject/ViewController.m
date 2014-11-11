@@ -40,7 +40,7 @@
 #pragma - UITableView Data Source Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,6 +63,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"The row that was pressed was row %ld", ((long)indexPath.row + 1));
+    
+    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AnimationTestViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
